@@ -1,0 +1,15 @@
+docker run -v mysql_volume:/var/lib/mysql --network docker_network --name MySQL -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7-debian
+docker run --name PhpMyAdmin -d --network docker_network -e PMA_HOST=MySQL -p 8080:80 phpmyadmin
+
+docker run -v ~/work/docker/volumes/mysql2:/var/lib/mysql --network docker_network --name MySQL -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7-debian
+docker run --name PhpMyAdmin -d --network docker_network -e PMA_HOST=MySQL -p 8080:80 phpmyadmin
+
+
+/usr/local/apache2/htdocs
+/usr/local/apache2/conf/httpd.conf
+/usr/local/apache2/logs
+
+dc exec -it $(dc ps --format "{{.ID}}") /bin/bash
+dc stop $(dc ps -aq) && dc rm $(dc ps -aq)
+dc run --rm --interactive --tty --volume $PWD:/app composer require fmihel/console-log
+hostname -I | cut -d ' ' -f1
