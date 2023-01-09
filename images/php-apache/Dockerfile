@@ -2,7 +2,7 @@ FROM php:7.4-apache
 LABEL maintainer fmihel76@gmail.com
 
 RUN apt-get update \ 
-    && apt-get install -y \
+    && apt-get upgrade -y \
     && apt-get install autoconf automake mc -y \
     && docker-php-ext-install mysqli \
     && mkdir /opt/xdebug/ \
@@ -14,5 +14,7 @@ RUN apt-get update \
     && ./configure \
     && make\
     && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902
-    #&& touch /usr/local/etc/php/conf.d/99-xdebug.ini \
-    #&& echo "zend_extension = xdebug" > /usr/local/etc/php/conf.d/99-xdebug.ini
+    # install imagick
+    #&& apt-get -y install libmagickwand-dev \
+    #&& pecl install imagick \
+    #&& docker-php-ext-enable imagick \
