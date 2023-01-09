@@ -6,10 +6,10 @@ services:
     image: php-apache
     container_name: php-apache
     volumes:
-      - ~/work/docker/php-apache/site:/var/www/html
-      - ~/work/docker/php-apache/apache2.conf:/etc/apache2/apache2.conf
-      - ~/work/docker/php-apache/99-xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
-      #- ~/work/docker/php-apache/php.ini:/usr/local/etc/php/php.ini
+      - ~/work/doc/www:/var/www/html
+      - ~/work/doc/config/apache2.conf:/etc/apache2/apache2.conf
+      - ~/work/doc/config/99-xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
+      #- ~/work/doc/config/php.ini:/usr/local/etc/php/php.ini
     networks:
       - docker_network 
     ports: 
@@ -17,7 +17,7 @@ services:
   MYSQL:
     image: mysql:5.7-debian
     volumes:
-      - ~/work/docker/volumes/mysql2:/var/lib/mysql
+      - ~/work/doc/volumes/mysql:/var/lib/mysql
     networks:
       - docker_network 
     environment:
