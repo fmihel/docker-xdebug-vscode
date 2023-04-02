@@ -13,7 +13,8 @@ RUN apt-get update \
     && phpize \ 
     && ./configure \
     && make\
-    && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902
+    && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902\
+    && a2enmod headers
     # install imagick
     #&& apt-get -y install libmagickwand-dev \
     #&& pecl install imagick \
